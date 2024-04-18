@@ -17,22 +17,29 @@ const HeroProduct: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full h-full py-12 px-6 flex flex-col justify-center items-center">
+    <div className="w-full h-full py-12 px-6 flex flex-col justify-center">
       {featuredProduct && (
         <div key={featuredProduct.id}>
-          <h1>{featuredProduct.title}</h1>
           {featuredProduct.images && featuredProduct.images.length > 0 && (
-            <Image
-              priority
-              src={
-                featuredProduct.images[1] ||
-                "/images/fallback/image-unavailable.png"
-              }
-              width={200}
-              height={200}
-              alt={featuredProduct.title}
-            />
+            <div className="w-full h-auto border-4 border-zinc-500">
+              <Image
+                priority
+                src={
+                  featuredProduct.images[1] ||
+                  "/images/fallback/image-unavailable.png"
+                }
+                width={1000}
+                height={1000}
+                alt={featuredProduct.title}
+                className="w-full h-[30rem] object-cover"
+              />
+            </div>
           )}
+          <div className="flex items-center gap-1 text-zinc-500 lowercase">
+            <h1>Pictured: {featuredProduct.title}</h1>
+            <div className="bg-zinc-400 h-[0.05rem] w-[0.5rem] mt-[0.15rem]"></div>
+            <p className="text-sm mt-[0.15rem]">${featuredProduct.price}</p>
+          </div>
         </div>
       )}
     </div>
