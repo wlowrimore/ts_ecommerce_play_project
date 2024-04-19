@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const Login: React.FC = () => {
   return (
-    <main className="w-full h-auto p-24 flex flex-col items-center justify-center">
-      <div className="flex flex-col items-center w-[30rem] h-[40rem] border-2 border-zinc-500 rounded px-16 py-10 space-y-12">
+    <main className="bg-login-background bg-cover bg-center bg-no-repeat w-full h-screen p-24 flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center w-[30rem] h-[40rem] border-2 border-zinc-500 rounded px-16 py-10 space-y-12 bg-zinc-100/70">
         <h1 className="text-3xl">the Cambridge Collection</h1>
         <p className="font-light">
           <strong>The Cambridge Collection</strong> offers a variety of stylish

@@ -8,7 +8,7 @@ const urbanist = Urbanist({
 
 const Header: React.FC = () => {
   return (
-    <nav className="w-screen h-28 flex items-center justify-around text-zinc-700 mt-2">
+    <nav className="w-screen h-28 flex items-center justify-around text-zinc-700 mt-2 bg-transparent fixed z-10">
       <div className={`${urbanist.className} flex flex-col items-center`}>
         <div className="flex gap-2">
           <p className="text-xl font-light">the</p>
