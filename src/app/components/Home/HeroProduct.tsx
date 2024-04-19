@@ -17,7 +17,7 @@ const HeroProduct: React.FC = () => {
   }, []);
 
   return (
-    <div className="w-full h-full py-12 px-6 flex flex-col justify-center">
+    <div className="pt-6 pb-12 px-10 flex flex-col justify-center">
       {featuredProduct && (
         <div key={featuredProduct.id}>
           {featuredProduct.images && featuredProduct.images.length > 0 && (
@@ -31,7 +31,7 @@ const HeroProduct: React.FC = () => {
                 width={1000}
                 height={1000}
                 alt={featuredProduct.title}
-                className="w-full h-[30rem] object-cover"
+                className="h-[30rem] object-cover"
               />
             </div>
           )}
