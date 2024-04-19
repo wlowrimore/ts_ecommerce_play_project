@@ -14,7 +14,7 @@ const LoginBtn: React.FC = () => {
         className=" py-2 px-1 rounded-full"
       />
       <button
-        className="bg-black rounded-r-full text-white font-semibold tracking-widest pl-1 py-2"
+        className="bg-black rounded-r-full text-white hover:text-amber-100/80 transition duration-300 font-semibold tracking-widest pl-1 py-2"
         onClick={() => signIn("google", { callbackUrl: "/" })}
       >
         LOGIN WITH GOOGLE
