@@ -11,16 +11,25 @@ const HeroProduct: React.FC = () => {
   useEffect(() => {
     const fetchFeaturedProduct = async () => {
       const productData = await getFeaturedProduct();
+      if (productData && productData.images) {
+        const cleanedImages = productData.images.map((img) =>
+          img.replace(/[\[\]"]+/g, "")
+        );
+        productData.images = cleanedImages;
+      }
       setFeaturedProduct(productData);
     };
     fetchFeaturedProduct();
   }, []);
 
+  console.log("featuredProduct HEROPRODUCT: ", featuredProduct);
+
   return (
     <div className="pt-6 pb-12 px-10 flex flex-col justify-center">
-      {featuredProduct && (
-        <div key={featuredProduct.id}>
-          {featuredProduct.images && featuredProduct.images.length > 0 && (
+      {featuredProduct &&
+        featuredProduct.images &&
+        featuredProduct.images.length > 0 && (
+          <div key={featuredProduct.id}>
             <div className="w-full h-auto border-4 border-zinc-500">
               <Image
                 priority
@@ -34,14 +43,13 @@ const HeroProduct: React.FC = () => {
                 className="h-[30rem] object-cover"
               />
             </div>
-          )}
-          <div className="flex items-center gap-1 text-zinc-500 lowercase">
-            <h1>Pictured: {featuredProduct.title}</h1>
-            <div className="bg-zinc-400 h-[0.05rem] w-[0.5rem] mt-[0.15rem]"></div>
-            <p className="text-sm mt-[0.15rem]">${featuredProduct.price}</p>
+            <div className="flex items-center gap-1 text-zinc-500 lowercase">
+              <h1>Pictured: {featuredProduct.title}</h1>
+              <div className="bg-zinc-400 h-[0.05rem] w-[0.5rem] mt-[0.15rem]"></div>
+              <p className="text-sm mt-[0.15rem]">${featuredProduct.price}</p>
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </div>
   );
 };
