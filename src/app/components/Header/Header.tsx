@@ -22,7 +22,7 @@ const Header: React.FC = () => {
         </p>
       </div>
       <ul className="flex text-lg gap-12">
-        <Link href="#">
+        <Link href="/">
           <li>Home</li>
         </Link>
         <Link href="#">
@@ -34,8 +34,8 @@ const Header: React.FC = () => {
         <Link href="#">
           <li>Contact</li>
         </Link>
-        <Link href="#">
-          <li>Register</li>
+        <Link href="/login">
+          <li>Login</li>
         </Link>
       </ul>
     </nav>
