@@ -11,6 +11,23 @@ const urbanist = Urbanist({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
+const getCategoryLink = (categoryName: string): string => {
+  switch (categoryName) {
+    case "Clothes":
+      return "/clothes";
+    case "Electronics":
+      return "/electronics";
+    case "Furniture":
+      return "/furniture";
+    case "Shoes":
+      return "/shoes";
+    case "Miscellaneous":
+      return "/miscellaneous";
+    default:
+      return "/";
+  }
+};
+
 const CategoryLinks: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
 
@@ -29,7 +46,7 @@ const CategoryLinks: React.FC = () => {
       <div className="flex w-full justify-center gap-2">
         {categories?.map((category) => (
           <div key={category.id} className="relative">
-            <Link href="#">
+            <Link href={getCategoryLink(category.name)}>
               <div className={`${urbanist.className} block relative w-48 h-96`}>
                 <Image
                   src={category.image}

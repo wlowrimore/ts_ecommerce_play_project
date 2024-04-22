@@ -1,5 +1,13 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { Options } from "@/app/api/auth/options";
+// import { signout } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 import { Urbanist } from "next/font/google";
 import Link from "next/link";
+import Image from "next/image";
 
 const urbanist = Urbanist({
   subsets: ["latin"],
@@ -7,8 +15,34 @@ const urbanist = Urbanist({
 });
 
 const Header: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="w-screen h-28 flex items-center justify-around text-zinc-700 mt-2 bg-transparent fixed z-10">
+    <nav
+      className={`w-screen h-28 flex items-center justify-around text-zinc-700 fixed z-10 ${
+        isScrolled
+          ? "bg-white/90 shadow-md shadow-zinc-700 transition duration-700"
+          : "bg-transparent"
+      }`}
+    >
       <div className={`${urbanist.className} flex flex-col items-center`}>
         <div className="flex gap-2">
           <p className="text-xl font-light">the</p>
@@ -21,12 +55,10 @@ const Header: React.FC = () => {
           collection
         </p>
       </div>
+
       <ul className="flex text-lg gap-12">
         <Link href="/">
           <li>Home</li>
-        </Link>
-        <Link href="#">
-          <li>About</li>
         </Link>
         <Link href="#">
           <li>Products</li>
@@ -34,9 +66,22 @@ const Header: React.FC = () => {
         <Link href="#">
           <li>Contact</li>
         </Link>
-        <Link href="/login">
-          <li>Login</li>
-        </Link>
+        {session ? (
+          <Link href="/api/auth/signout" className="flex gap-4 items-center">
+            <li>SignOut</li>
+            <Image
+              src={`${session.user?.image}`}
+              width={32}
+              height={32}
+              alt={`${session.user?.name}`}
+              className="rounded-full"
+            />
+          </Link>
+        ) : (
+          <Link href="/api/auth/signin">
+            <li>SignIn</li>
+          </Link>
+        )}
       </ul>
     </nav>
   );

@@ -25,7 +25,7 @@ const HeroProduct: React.FC = () => {
   console.log("featuredProduct HEROPRODUCT: ", featuredProduct);
 
   return (
-    <div className="pt-6 pb-12 px-10 flex flex-col justify-center">
+    <div className="pt-6 pb-12 flex flex-col justify-center w-full">
       {featuredProduct &&
         featuredProduct.images &&
         featuredProduct.images.length > 0 && (
@@ -40,7 +40,7 @@ const HeroProduct: React.FC = () => {
                 width={1000}
                 height={1000}
                 alt={featuredProduct.title}
-                className="h-[30rem] object-cover"
+                className="h-[48rem] object-cover"
               />
             </div>
             <div className="flex items-center gap-1 text-zinc-500 lowercase">
