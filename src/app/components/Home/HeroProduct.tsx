@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Product } from "@/app/data-fetching/getProductData";
-import { getFeaturedProduct } from "@/app/data-fetching/getProductData";
+import { getSingleProduct } from "@/app/data-fetching/getProductData";
 import Image from "next/image";
 
 const HeroProduct: React.FC = () => {
@@ -10,7 +10,7 @@ const HeroProduct: React.FC = () => {
 
   useEffect(() => {
     const fetchFeaturedProduct = async () => {
-      const productData = await getFeaturedProduct();
+      const productData = await getSingleProduct(23);
       if (productData && productData.images) {
         const cleanedImages = productData.images.map((img) =>
           img.replace(/[\[\]"]+/g, "")

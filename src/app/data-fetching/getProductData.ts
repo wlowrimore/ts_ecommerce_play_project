@@ -25,9 +25,11 @@ export default async function getAllProducts(): Promise<Product[]> {
   return data;
 }
 
-// get featured product for hero
-export async function getFeaturedProduct(): Promise<Product> {
-  const response = await fetch("https://api.escuelajs.co/api/v1/products/16");
+// get single product
+export async function getSingleProduct(productId: number): Promise<Product> {
+  const response = await fetch(
+    `https://api.escuelajs.co/api/v1/products/${productId}`
+  );
   const featuredData: Product = await response.json();
   console.log("FEATURED DATA: ", featuredData);
   return featuredData;
