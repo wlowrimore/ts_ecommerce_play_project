@@ -39,7 +39,7 @@ const Header: React.FC = () => {
     <nav
       className={`w-screen h-28 flex items-center justify-around text-zinc-700 fixed z-10 ${
         isScrolled
-          ? "bg-white/90 shadow-md shadow-zinc-700 transition duration-700"
+          ? "bg-white shadow-md shadow-zinc-700 transition duration-300"
           : "bg-transparent"
       }`}
     >

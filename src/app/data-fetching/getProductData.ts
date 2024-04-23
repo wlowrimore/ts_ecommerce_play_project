@@ -55,7 +55,7 @@ export async function getCategoryProducts(
   categoryId: number
 ): Promise<Product[]> {
   const response = await fetch(
-    `https://api.escuelajs.co/api/v1/products/?category=${categoryId}&offset=1&limit=15`
+    `https://api.escuelajs.co/api/v1/products/?categoryId=${categoryId}&offset=1&limit=15`
   );
   const data: Product[] = await response.json();
   console.log("CATEGORY PRODUCTS DATA: ", data);
