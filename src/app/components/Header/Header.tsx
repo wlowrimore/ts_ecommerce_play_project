@@ -6,6 +6,7 @@ import { Options } from "@/app/api/auth/options";
 import { useSession } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import { Urbanist } from "next/font/google";
+import ProductsDDMenu from "./ProductsDDMenu";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -16,6 +17,7 @@ const urbanist = Urbanist({
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [showDDMenu, setShowDDMenu] = useState<boolean>(false);
 
   const { data: session } = useSession();
 
@@ -60,10 +62,14 @@ const Header: React.FC = () => {
         <Link href="/">
           <li>Home</li>
         </Link>
-        <Link href="#">
-          <li>Products</li>
-        </Link>
-        <Link href="#">
+        <li
+          onMouseEnter={() => setShowDDMenu(true)}
+          onMouseLeave={() => setShowDDMenu(false)}
+        >
+          Products
+          {showDDMenu && <ProductsDDMenu />}
+        </li>
+        <Link href="/contact">
           <li>Contact</li>
         </Link>
         {session ? (
